@@ -50,7 +50,7 @@ export default {
   data()
   {
     return{
-      hideit :true,
+      //hideit :true,
       search_term :'',
       courses:[],
       show_products:true,
@@ -168,8 +168,7 @@ export default {
       {
         deletedItem = this.cart.splice(i,1);
       }          
-    }
-              
+    }             
     //checking the number of items in the cart
     if (this.cart.length === 0) 
     {
@@ -187,8 +186,7 @@ export default {
         this.courses[i].A_D = false;
         tempItem = this.courses[i];
       }
-    }  
-
+    }
     const tempObj = {spaces:tempItem.spaces ,A_D:tempItem.A_D};
     fetch('https://cst3145cw2kazi.herokuapp.com/collection/products/'+tempItem._id , 
     {
@@ -273,6 +271,4 @@ float:left;
 h1{
   font-size: 45px;
 }
-
-
 </style>

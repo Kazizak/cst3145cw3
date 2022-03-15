@@ -10,19 +10,18 @@
         </div>
       </div>
     <!-- This div is to take input for placing order -->
-        <p1>First Name</p1>
-        <input type="text" id="fname" v-model="order.first_name"><br><br>
-        <p1>Last Name</p1>
-        <input type="text" id="lname" v-model="order.last_name"><br><br>
-        <p1>Phone Number</p1>
-        <input type="text" id="phone" v-model="order.phone_number"><br><br>
-        <p1>Post Code</p1>
-        <input type="text" id="postcode" v-model="order.postcode"><br><br>
-        <p1>Address Line</p1>
-        <input type="text" id="address" v-model="order.address"><br><br>
-        <input type="button" value="Place Order" v-show="all_info" @click="place_my_order">
-</div>
-    
+    <p1>First Name</p1>
+    <input type="text" id="fname" v-model="order.first_name"><br><br>
+    <p1>Last Name</p1>
+    <input type="text" id="lname" v-model="order.last_name"><br><br>
+    <p1>Phone Number</p1>
+    <input type="text" id="phone" v-model="order.phone_number"><br><br>
+    <p1>Post Code</p1>
+    <input type="text" id="postcode" v-model="order.postcode"><br><br>
+    <p1>Address Line</p1>
+    <input type="text" id="address" v-model="order.address"><br><br>
+    <input type="button" value="Place Order" v-show="all_info" @click="place_my_order">
+</div>   
 </template>
 
 <script>
@@ -68,11 +67,7 @@ export default{
             this.order.items = this.cart;
             this.$emit('placeOrder',this.order);
         }
-
     }
-    
-    
-
 }
 </script>
 
