@@ -1,48 +1,51 @@
 <template>
   <div id="app">
-    <header>
-      <h1> CLASS BOOKING SYSTEM </h1>
-    </header>
-    <div id="sort_panel" v-show="hideit">
-      <Strong>SORTING OPTIONS</Strong>
-      <select v-model="sorty.type">
-        <option value="">Default</option>
-        <option value="P">Price</option>
-        <option value="A">Availability </option>
-      </select>
-      <br><br><br>
-      <Strong>ORDER BY</Strong>
-      <select v-model="sorty.order_by">
-        <option value="">Default</option>
-        <option value="HL">High to Low</option>
-        <option value="LH">Low to High</option>
-      </select>
-      <br><br><br>
-      <input type="button" value="SORT" @click="sort_array">
+    <div id="sort_search">
+      <header>
+        <h1> CLASS BOOKING SYSTEM </h1>
+      </header>
+      <div id="sort_panel" v-show="show_products || !this.len">
+        <Strong>SORTING OPTIONS</Strong>
+        <select v-model="sorty.type">
+          <option value="">Default</option>
+          <option value="P">Price</option>
+          <option value="A">Availability </option>
+        </select>
+        <br><br><br>
+        <Strong>ORDER BY</Strong>
+        <select v-model="sorty.order_by">
+          <option value="">Default</option>
+          <option value="HL">High to Low</option>
+          <option value="LH">Low to High</option>
+        </select>
+        <br><br><br>
+        <input type="button" value="SORT" @click="sort_array">
+      </div>
+      <div id="search_bar" v-show="hideit">
+        <strong>Search</strong>
+        <input type="text" v-model= "search_term"><br>
+      </div>
+      <!-- button for the shopping cart -->
+      <button v-show="len" @click="show_cart">{{this.cart.length}}  Shopping Cart</button>
+      <br>
     </div>
-    <div v-show="hideit">
-      <strong>Search</strong>
-      <input type="text" v-model= "search_term"><br>
+    <div id="prods">
+      <displayProducts @addproduct='add_to_cart' :courses="courses" v-show= show_products></displayProducts>
     </div>
-    <!-- button for the shopping cart -->
-    <button v-show="len" @click="show_cart">{{this.cart.length}}  Shopping Cart</button>
-    <displayProducts @addproduct='add_to_cart' :courses="courses" v-show="show_products || !this.len"></displayProducts>
-    <checkoutPage @removefromcart='remove_from_cart' @placeOrder='place_my_order' :cart="cart" v-show="!show_products"></checkoutPage>
-
-    <!-- Everything above this line-->
+    <checkout @removefromcart='remove_from_cart' @placeOrder='place_my_order' :cart="cart"  v-show= !show_products></checkout>
   </div>
 </template>
 
 <script>
 
-
+import checkout from './components/checkout.vue'
 import displayProducts from './components/displayProducts.vue'
-import checkoutPage from './components/CheckoutPage.vue'
+
 
 export default {
   name: 'app',
   components: {
-    displayProducts, checkoutPage
+    displayProducts, checkout
   },
   data()
   {
@@ -171,7 +174,7 @@ export default {
     if (this.cart.length === 0) 
     {
       this.len = false;
-      this.show_product = true;
+      this.show_products = true;
       this.hideit = true;
     }
     //needs to replace back to products
@@ -247,6 +250,29 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+#sort_panel{
+  display:block;
+  float :left;
+  padding-top: 30px;
+  width : 400px;
+  height : 175px;
+  border : 1px solid black;
+  border-radius: 10px;
+}
+#search_bar{
+margin-left: 150px;
+margin-top:50x;
+display :block;
+float:left;
+}
+#sort_search{
+  display:block;
+  height: 350px;
+}
+h1{
+  font-size: 45px;
+}
+
+
 </style>

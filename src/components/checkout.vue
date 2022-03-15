@@ -1,25 +1,24 @@
 <template>
-<div>
+<div >
     <!-- The checout page starts here -->
-    <div id="checkoutPage">
       <div v-for="c in cart" :key="c.id">
-        <h1>{{c.subject}}</h1>
-        <p>{{c.campus}}</p>
-        <p>{{c.price}}</p>
-        <input type="button" value="Remove" @click="remove_from_cart(c._id)">
+        <div id="template_cart">
+            <h2>{{c.subject}}</h2>
+            <p>{{c.campus}}</p>
+            <p>{{c.price}}</p>
+            <input type="button" value="Remove" @click="remove_from_cart(c._id)">
+        </div>
       </div>
-    </div>
-    <br><br><br><br><br>
-      <!-- This div is to take input for placing order -->
-        <strong>First Name</strong>
+    <!-- This div is to take input for placing order -->
+        <p1>First Name</p1>
         <input type="text" id="fname" v-model="order.first_name"><br><br>
-        <strong>Last Name</strong>
+        <p1>Last Name</p1>
         <input type="text" id="lname" v-model="order.last_name"><br><br>
-        <strong>Phone Number</strong>
+        <p1>Phone Number</p1>
         <input type="text" id="phone" v-model="order.phone_number"><br><br>
-        <strong>Post Code</strong>
+        <p1>Post Code</p1>
         <input type="text" id="postcode" v-model="order.postcode"><br><br>
-        <strong>Address Line</strong>
+        <p1>Address Line</p1>
         <input type="text" id="address" v-model="order.address"><br><br>
         <input type="button" value="Place Order" v-show="all_info" @click="place_my_order">
 </div>
@@ -30,7 +29,7 @@
   var myregex1 = /^\d+\d*$/;
   var myregex2 = /^[a-z]+[a-z]*$/;
 export default{
-    name: "CheckoutPage",
+    name: "checkOut",
     props:['cart'],
     data(){
         return{
@@ -78,5 +77,14 @@ export default{
 </script>
 
 <style>
+#template_cart{
+    display:block;
+    float:left;
+    width: 150px;
+    height :150px;
+    border : 1px solid black;
+    border-radius : 5px;
+    margin : 5px;
+}
 
 </style>

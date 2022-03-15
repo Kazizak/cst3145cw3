@@ -3,7 +3,7 @@
       <div v-for="course in courses"  :key="course.id">
         <div id="course_templates">
          <img style="width: 100px; height:100px;" v-bind:src="course.image">
-          <h1>Subject : {{course.subject}}</h1>
+          <h2>Subject : {{course.subject}}</h2>
           <p>Campus : {{course.campus}}</p>
           <p>Price : {{course.price}}</p>
           <p>Available Spaces : {{course.spaces}}</p>
@@ -36,4 +36,12 @@ export default{
 </script>
 
 <style>
+#course_templates{
+    border : 1px solid black;
+    float: left;
+    padding: 30px;
+    margin : 20px;
+    border-radius :10px;
+    font-size: 20px;
+}
 </style>
